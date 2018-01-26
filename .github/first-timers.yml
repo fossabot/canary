@@ -1,0 +1,4 @@
+---
+template: .github/FIRST_ISSUE_TEMPLATE.md
+labels:
+  - good first issue

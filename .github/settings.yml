@@ -1,0 +1,73 @@
+---
+repository:
+  name: canary
+  description: An http server to run in a docker container inside a kuberntes cluster.
+  homepage: http://philoserf.com/canary
+  has_issues: true
+  has_downloads: false
+  has_wiki: false
+  default_branch: master
+  allow_squash_merge: true
+  allow_merge_commit: true
+  allow_rebase_merge: true
+
+labels:
+  # default labels
+  - name: bug
+    color: ee0701
+  - name: duplicate
+    color: cccccc
+  - name: enhancement
+    color: 84b6eb
+  - name: good first issue
+    color: 7057ff
+  - name: help wanted
+    color: 33aa3f
+  - name: invalid
+    color: e6e6e6
+  - name: question
+    color: cc317c
+  - name: wontfix
+    color: ffffff
+  # prioity
+  - name: "Priority: P1"
+    color: e8350c
+  - name: "Priority: P2"
+    color: ff5500
+  - name: "Priority: P3"
+    color: e8750c
+  - name: "Priority: P4"
+    color: ffa10d
+  # state
+  - name: BLOCKED
+    color: ffa10d
+  - name: holding
+    color: e6e6e6
+  - name: stale
+    color: cccccc
+  - name: DO NOT MERGE
+    color: ee0701
+  # size
+  - name: "Size: XLarge"
+    color: 333333
+  - name: "Size: Large"
+    color: 404040
+  - name: "Size: Medium"
+    color: 7f7f7f
+  - name: "Size: Small"
+    color: bfbfbf
+  - name: "Size: XSmall"
+    color: 000000
+  # other
+  - name: docs
+    color: ffffff
+  - name: refactor
+    color: ffffff
+  - name: maintenance
+    color: ffffff
+  - name: security
+    color: ffffff
+  - name: feature
+    color: ffffff
+  - name: design note
+    color: ffffff
