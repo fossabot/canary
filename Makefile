@@ -1,18 +1,22 @@
-# builtins are not needed
-
-MAKEFLAGS += --no-builtin-rules
-.SUFFIXES:
+MMAKE := $(shell command -v mmake 2> /dev/null)
+GORETURNS := $(shell command -v goreturns 2> /dev/null)
+GOMETALINTER := $(shell command -v gometalinter 2> /dev/null)
+MARKDOWNLINT := $(shell command -v markdownlint 2> /dev/null)
 
 # dispaly make task usage
 help:
+ifndef MMAKE
+	@echo "Please run 'make boostrap'"
+else
 	mmake help -v
 	@echo "You may want to 'alias make=mmake'"
+endif
 .PHONY: help
 .DEFAULT_GOAL := help
 
 # check golang syntax and format
 #
-# runs go vet, fmt with -s, goimports, and goreturns
+# 	- runs go vet, fmt with -s, goimports, and goreturns
 vet:
 	go vet ./...
 	gofmt -s -l .
@@ -21,7 +25,7 @@ vet:
 
 # check style and lint
 #
-# runs gometalinter with all linters enable except gas
+# 	- runs gometalinter with all linters enable except gas
 lint:
 	gometalinter \
 		--vendored-linters \
@@ -36,7 +40,7 @@ lint:
 
 # run golang tests
 #
-# runs go test verbosely
+# 	- runs go test verbosely
 test:
 	go test -v ./...
 .PHONY: test
@@ -54,11 +58,6 @@ docker:
 precommit: vet lint test
 	markdownlint docs/index.md
 .PHONY: name
-
-MMAKE := $(shell command -v mmake 2> /dev/null)
-GORETURNS := $(shell command -v goreturns 2> /dev/null)
-GOMETALINTER := $(shell command -v gometalinter 2> /dev/null)
-MARKDOWNLINT := $(shell command -v markdownlint 2> /dev/null)
 
 # installs development tools
 bootstrap:
@@ -85,3 +84,6 @@ else
 	@echo "Already Installed: markdownlint. Skipping."
 endif
 .PHONY: bootstrap
+
+MAKEFLAGS += --no-builtin-rules
+.SUFFIXES:
