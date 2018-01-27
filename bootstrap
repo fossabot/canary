@@ -1,3 +1,0 @@
-#!/bin/bash
-
-[[ -f $GOPATH/bin/mage ]] || go get -u github.com/magefile/mage/...
