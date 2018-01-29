@@ -47,7 +47,7 @@ test:
 
 # build the static linked binary
 build:
-	CGO_ENABLED=0 go build -o canary
+	CGO_ENABLED=0 go build .
 .PHONY: build
 
 # build the docker development image

@@ -1,6 +1,7 @@
 FROM golang as build
-COPY . /go/src/github.com/philoserf/canary/
+COPY *.go /go/src/github.com/philoserf/canary/
 WORKDIR /go/src/github.com/philoserf/canary/
+ENV CGO_ENABLED 0
 RUN go build -o /canary
 
 FROM scratch
