@@ -20,6 +20,10 @@ kubernetes cluster project develops.
 
 ---
 
+## Badges
+
+[![wercker status](https://app.wercker.com/status/c6b9f228c8f95e4751e7d855d3d9836f/m/master "wercker status")](https://app.wercker.com/project/byKey/c6b9f228c8f95e4751e7d855d3d9836f)
+
 Copyright 2018 by Mark Ayers. License: [Apache 2.0][1]
 
 [1]: LICENSE.md "Apache 2.0 software license"
