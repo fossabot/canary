@@ -7,48 +7,46 @@ import (
 )
 
 func TestHandlers(t *testing.T) {
-	tests := []struct {
-		handler http.HandlerFunc
+	tt := []struct {
 		name    string
+		handler http.HandlerFunc
 		route   string
 		body    string
 	}{
 		{
-			defaultHandler,
 			"Default Handler",
+			defaultHandler,
 			"/",
-			`OK
-`,
+			"OK\n",
 		},
 		{
-			statusHandler,
 			"Status Handler",
+			statusHandler,
 			"/health",
-			`{"status": "OK"}
-`,
+			"{\"status\": \"OK\"}\n",
 		},
 	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			r, err := http.NewRequest("GET", tt.route, nil)
+	for _, tc := range tt {
+		t.Run(tc.name, func(t *testing.T) {
+			req, err := http.NewRequest("GET", tc.route, nil)
 			if err != nil {
 				t.Fatal(err)
 			}
 
-			rr := httptest.NewRecorder()
-			handler := http.HandlerFunc(tt.handler)
+			res := httptest.NewRecorder()
+			handler := http.HandlerFunc(tc.handler)
 
-			handler.ServeHTTP(rr, r)
+			handler.ServeHTTP(res, req)
 
-			if status := rr.Code; status != http.StatusOK {
-				t.Errorf("handler returned wrong status code: got %v want %v",
+			if status := res.Code; status != http.StatusOK {
+				t.Errorf("handler returned status code: got %v want %v",
 					status, http.StatusOK)
 			}
 
-			expected := tt.body
-			if rr.Body.String() != expected {
+			expected := tc.body
+			if res.Body.String() != expected {
 				t.Errorf("handler returned unexpected body: got %v want %v",
-					rr.Body.String(), expected)
+					res.Body.String(), expected)
 			}
 		})
 	}
